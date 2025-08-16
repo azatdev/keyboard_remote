@@ -17,8 +17,19 @@ commands = {
     "insert": "toggleCamera",
     "right": "slideRight",
     "left": "slideLeft",
-    "page up": "scale",
-    "+": "focus"
+    "down": "scaleDown",
+    "up": "scaleUp",
+    "page up": "toggleMask",
+    "+": "focus",
+    "-": "toggleImage",
+    "÷": "toggleBGVideo",
+    "f3": "slot1",
+    "f4": "slot2",
+    "f5": "slot3",
+    "f6": "slot4",
+    "f7": "slot5",
+    "f8": "lockBGImage",
+    "f9": "toggleWhiteboard"
 }
 
 def handle_input(command):
@@ -44,21 +55,21 @@ def on_key(event):
     # Ignore keys without names or with more than one character (function keys, shift, etc.)
     if key is None or key == "unknown":
         return
-        
+
     if key == "space" or key == "enter":
         if buffer and len(buffer) > 1:
             perform_search(buffer)
             prevSearch = buffer
             buffer = ""  # reset buffer
             return
-            
+
     if key == "×":
         if prevSearch:
             perform_search(prevSearch)
             return
-            
+
     lcd.clear()
-            
+
     if key in commands:
         handle_input(key)
         buffer = ""
