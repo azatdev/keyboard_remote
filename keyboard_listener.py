@@ -79,9 +79,14 @@ def on_key(event):
     elif len(key) == 1:  # only append single character keys
         buffer += key
 
-    #lcd.cursor_pos = (0, 0)
     lcd.write_string(buffer)
 
 keyboard.on_release(on_key)
 print("Listening for input (terminate with Ctrl+C)...")
-keyboard.wait()
+
+def startKeyboardWait():
+    keyboard.wait()
+
+while True:
+    startKeyboardWait()
+    time.sleep(30)
